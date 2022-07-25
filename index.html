@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style/style.css">
+    <title>Inicio</title>
+</head>
+
+<body>
+    <div id="index" class="index-box">
+
+        <div class="index-content">
+
+            <figure id="figure-index">
+                <img src="./assets/img/Logo_WWTBAM_Spain.png" alt="logo" id="logo" class="logo-index">
+            </figure><br/><br/>
+
+
+            <section class="box-log">
+
+                <button id="dropdown-log" class="dropdown-button">Inicia sesión</button><br/>
+
+                <form id="form-log" class="dropdown-content" action="#" method="POST">
+                    <label id="mail-log-lab" for="mail-log">Email:</label>
+                    <input id="maillog" name="maillog" type="text" placeholder="Email de login..."><br/>
+
+                    <label id="pass-log-lab" for="pass-log">Contraseña:</label>
+                    <input id="passlog" name="passlog" type="password" placeholder="Contraseña de login..."><br/><br/>
+
+                    <button id="submit-log" class="submit-button">Enviar</button><br/>
+
+                </form>
+                
+            </section>
+
+            <hr id="bar" size="1px" color="white" width="80%"/>
+            <br/>
+
+            <section class="box-reg">
+
+                <button id="dropdown-reg" class="dropdown-button">Regístrate</Button><br/>
+
+                <form id="form-reg" action="#" method="POST" class="dropdown-content">
+                    
+                    <label id="mail-reg-lab" for="mailreg">Email:</label>
+                    <input id="mailreg" name="mailreg" type="text" placeholder="Email de registro..."><br/>
+
+                    <label id="pass-reg-lab" for="passreg">Contraseña:</label>
+                    <input id="passreg" name="passreg" type="password" placeholder="Contraseña de registro..."><br/>
+
+                    <label id="pass-reg-lab-rep" for="passregrep">Repite contraseña:</label>
+                    <input id="passregrep" name="passregrep" type="password" placeholder="Repite contraseña..."><br/><br/>
+
+                    <input type="submit" id="submit-reg" class="submit-button" value="Enviar"><br/>
+                </form>
+            </section>
+            
+            <button id="loggedUsers" class="button-registered">Check users</button><br/>
+
+            <button id="startQuiz" class="button-registered">Comenzar</button><br/>
+
+            <button id="unlog" class="button-registered">Desconectar</button><br/>
+        
+        </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.7.1/firebase-auth.js"></script>
+    <script src="./script/index.js"></script>
+</body>
+
+</html>
