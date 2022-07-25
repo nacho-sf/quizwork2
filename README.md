@@ -16,15 +16,13 @@ Si el usuario ya tiene un registro creado, podrá acceder directamente al Quiz i
 
 Desde esta misma pantalla de perfil del usuario o Home, podrá acceder directamente al Quiz.
 
-******(pantalla ""HOME"")*******
-
-
-El Quiz, recoge tanto las preguntas como las opciones de respuesta de una Api externa, disponiendo de una única pregunta y cuatro respuestas por pantalla, es decir, SPA (single-page application). Únicamente una de las respuests es correcta; si el usuario acierta, suma un punto al marcador.
+El Quiz, recoge tanto las preguntas como las opciones de respuesta de una Api externa, disponiendo de una única pregunta y cuatro respuestas por pantalla, es decir, SPA (single-page application). Únicamente una de las respuests es correcta; si el usuario acierta, suma un punto al marcador, si falla, no se suma ningún punto.
 
 ![Quiz 2 0](https://user-images.githubusercontent.com/107259913/180888198-05ab75e4-528a-439d-a33b-f572f837dba6.png)
 
-Al finalizar el Quiz, el usuario podrá ver su puntuación correcta sobre el total de preguntas realizadas. En esta misma pantalla, podrá acceder de nuevo al Quiz, para jugar otra partida.
+Al finalizar el Quiz, el usuario podrá ver su puntuación correcta sobre el total de preguntas realizadas. En esta misma pantalla, podrá acceder de nuevo al Quiz, para jugar otra partida o bien redirigirse a la pantalla de inicio.
 
-![results](https://user-images.githubusercontent.com/107259913/180888302-a6a785e3-da87-4d50-bfd5-0006d56402b7.png)
+![resultados](https://user-images.githubusercontent.com/107259913/180892176-a0c4d792-691d-4717-ad53-8eaa90d4bb98.png)
+
 
 
