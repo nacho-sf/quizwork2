@@ -66,13 +66,12 @@ async function quizGame() {
 
                 quiz.innerHTML = `
                     <br><br><br><br><br><br><br>
-                    <h2>You answered ${totalScore}/${pregsQuiz.results.length} questions correctly</h2>
+                    <h2>Has respondido ${totalScore}/${pregsQuiz.results.length} preguntas correctamente</h2></br></br>
         
-                    <button onclick="location.reload()">Reload</button>
+                    <button id="reload" class="button-registered" onclick="location.reload()">Volver a jugar</button></br></br>
+                    <button id="retHome" class="button-registered" onclick="location.href='../index.html';">Volver a inicio</button>
                     `
 
-                //window.location.href = "results.html";
-                //localStorage.setItem("player",JSON.stringify(localSdata));
             } else {
                 deleteRadio()
 

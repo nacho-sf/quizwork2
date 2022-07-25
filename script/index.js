@@ -98,7 +98,8 @@ const signUpUser = (email, password) => {
             document.getElementById("dropdown-log").style.display = "none";
             document.getElementById("form-log").style.display = "none";
             document.getElementById("bar").style.display = "none";
-            document.getElementById("loggedUsers").style.display = "flex";
+            wellcomeContent.innerHTML = `<h3>Sesión iniciada: ${user.email}</h3>`
+            document.getElementById("loggedUsers").style.display = "none";
             document.getElementById("unlog").style.display = "flex";
             document.getElementById("startQuiz").style.display = "flex";
         
@@ -165,7 +166,8 @@ const signInUser = (email, password) => {
             document.getElementById("dropdown-log").style.display = "none";
             document.getElementById("form-log").style.display = "none";
             document.getElementById("bar").style.display = "none";
-            document.getElementById("loggedUsers").style.display = "flex";
+            wellcomeContent.innerHTML = `<h3>Sesión iniciada: ${user.email}</h3>`
+            document.getElementById("loggedUsers").style.display = "none";
             document.getElementById("unlog").style.display = "flex";
             document.getElementById("startQuiz").style.display = "flex";
 
@@ -215,11 +217,15 @@ const signOut = () => {
 
         document.getElementById("dropdown-reg").style.display = "flex";
         document.getElementById("dropdown-reg").style.justifyContent = "center";
-        document.getElementById("form-reg").style.display = "flex";
+        document.getElementById("form-reg").style.display = "none";
         document.getElementById("dropdown-log").style.display = "flex";
         document.getElementById("dropdown-log").style.justifyContent = "center";
-        document.getElementById("form-log").style.display = "flex";
+        document.getElementById("form-log").style.display = "none";
         document.getElementById("bar").style.display = "flex";
+        wellcomeContent.innerHTML = ``
+        document.getElementById("loggedUsers").style.display = "none";
+        document.getElementById("unlog").style.display = "none";
+        document.getElementById("startQuiz").style.display = "none";
 
     }).catch((error) => {
         console.log("hubo un error: " + error);
@@ -252,44 +258,3 @@ document.getElementById("loggedUsers").addEventListener("click", function () {
 })
 
 
-
-
-
-
-
-
-/*
-hideBoth();
-
-let btnLog = document.getElementById("dropdown-log")
-let btnReg = document.getElementById("dropdown-reg")
-let clickLogo = document.getElementById("figure-index")
-
-function hideBoth() {
-    let hideLog = document.getElementById("form-log");
-    hideLog.style.display = "none";
-    let hideReg = document.getElementById("form-reg");
-    hideReg.style.display = "none";
-}
-
-btnLog.addEventListener('click', () => {
-    let showLog = document.getElementById("form-log");
-    showLog.style.display = "flex";
-    let hideReg = document.getElementById("form-reg");
-    hideReg.style.display = "none";
-})
-
-btnReg.addEventListener('click', () => {
-    let showReg = document.getElementById("form-reg");
-    showReg.style.display = "flex";
-    let hideLog = document.getElementById("form-log");
-    hideLog.style.display = "none";
-})
-
-clickLogo.addEventListener('click', () => {
-    let hideReg = document.getElementById("form-reg");
-    hideReg.style.display = "none";
-    let hideLog = document.getElementById("form-log");
-    hideLog.style.display = "none";
-})
-*/

@@ -142,6 +142,14 @@ h2 {
     width: 100%;
   }
 
+  #wellcomeContent {
+    text-align: center;
+  }
+
+  #wellcomeContent h3 {
+    margin-top: 0;
+  }
+
   #figure-index {
     margin: 0;
   }
