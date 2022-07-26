@@ -1,8 +1,8 @@
 //Obtenemos la Fecha y la hora, y la guardamos en un JSON para meterlas en localStorage.
 let date = new Date();
-let formatDate = date.getDate() + "-" + (date.getMonth() + 1) + "-" + date.getFullYear()+" a las "+date.getHours() + ":" + date.getMinutes();
+let formatDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()+" ("+date.getHours() + "h:" + date.getMinutes()+"m)";
 
-let localSdata = JSON.parse(localStorage.getItem("email"));
+let localSdata = JSON.parse(localStorage.getItem("user"));
 
 
 
@@ -46,7 +46,7 @@ document.getElementById("form-reg").style.display = "none";
 document.getElementById("loggedUsers").style.display = "none";
 document.getElementById("unlog").style.display = "none";
 document.getElementById("startQuiz").style.display = "none";
-
+document.getElementById("chartScore").style.display = "none";
 
 
 document.getElementById("dropdown-log").addEventListener("click", function (event) {
@@ -102,7 +102,7 @@ const signUpUser = (email, password) => {
             document.getElementById("loggedUsers").style.display = "none";
             document.getElementById("unlog").style.display = "flex";
             document.getElementById("startQuiz").style.display = "flex";
-        
+            document.getElementById("chartScore").style.display = "none";
             
 
         })
@@ -130,18 +130,21 @@ document.getElementById("form-reg").addEventListener("submit", function (event) 
     pass === pass2 ? signUpUser(email, pass) : alert("error password");
 
     // Hacer más validaciones...
-    let correo =[
+    let user =[
         {
           "email": document.getElementById("mailreg").value,
-          "Fecha": formatDate,
+          "fechalog": formatDate,
         }
       ];
 
-      localStorage.setItem("email", JSON.stringify(correo));
+      localStorage.setItem("user", JSON.stringify(user));
 })
 
 
-
+document.getElementById("startQuiz").addEventListener("click", function (event) {
+    event.preventDefault();
+    window.location.href = "./pages/quiz.html";
+})
 
 
 
@@ -170,6 +173,49 @@ const signInUser = (email, password) => {
             document.getElementById("loggedUsers").style.display = "none";
             document.getElementById("unlog").style.display = "flex";
             document.getElementById("startQuiz").style.display = "flex";
+            document.getElementById("chartScore").style.display = "flex";
+
+// Gráfica de puntuaciones
+
+            let puntuaciones = [];
+            let fechas = [];
+            async function getDataFire() {
+                await db.collection("score")
+                    .where("email", "==", localSdata[0].email)
+                    .limit(5)
+                    .get()
+                    .then((querySnapshot) => {
+                        querySnapshot.forEach((doc) => {
+                            puntuaciones.push(doc.data().puntuacion);
+                            fechas.push(doc.data().fechascore);
+                        });
+                    })
+                    .catch((error) => {
+                        console.log("Error getting documents: ", error);
+                    });
+            }
+            getDataFire().then(() => {
+                createChart (puntuaciones, fechas)
+            });
+
+            function createChart (puntuaciones, fechas) {
+                new Chartist.Bar(
+                    ".ct-chart",
+                    {
+                        labels: fechas,
+                        series: [puntuaciones],
+                    },
+                    {
+                        seriesBarDistance: 10,
+                        low: 0,
+                        high: 10,
+                    }
+                );
+            }
+
+            document.getElementById("chartScore").style.display="block";
+
+
 
         })
         .catch((error) => {
@@ -185,14 +231,14 @@ document.getElementById("form-log").addEventListener("submit", function (event) 
     let email = event.target.elements.maillog.value;
     let pass = event.target.elements.passlog.value;
     signInUser(email, pass)
-    let correo =[
+    let user =[
         {
           "email": document.getElementById("maillog").value,
-          "Fecha": formatDate,
+          "fechalog": formatDate,
         }
       ];
     
-      localStorage.setItem("email", JSON.stringify(correo));
+      localStorage.setItem("user", JSON.stringify(user));
       
 })
 

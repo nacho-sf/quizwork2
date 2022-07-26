@@ -1,3 +1,4 @@
+
 let score = [];
 let currentQuestion = 0;
 
@@ -62,15 +63,38 @@ async function quizGame() {
                 score.forEach(sum1 => {
                     totalScore += sum1
                     //Cuando llega a la pantalla final, suma los elementos al array "score"
+
+                    let date = new Date();
+                    let formatDate = date.getDate() + "/" + (date.getMonth() + 1) + "/" + date.getFullYear()+" ("+date.getHours() + "h:" + date.getMinutes()+"m)";
+
+
+                    localSdata[0].fechascore = formatDate;
+                    localSdata[0].puntuacion = totalScore;
+                    localStorage.setItem("user",JSON.stringify(localSdata));
                 })
+
 
                 quiz.innerHTML = `
                     <br><br><br><br><br><br><br>
                     <h2>Has respondido ${totalScore}/${pregsQuiz.results.length} preguntas correctamente</h2></br></br>
-        
-                    <button id="reload" class="button-registered" onclick="location.reload()">Volver a jugar</button></br></br>
-                    <button id="retHome" class="button-registered" onclick="location.href='../index.html';">Volver a inicio</button>
+
+
+                    <button id="reload" class="button-registered">Guardar y recargar</button></br></br>
+
+                    <button id="exit" class="button-registered">Salir sin guardar</button></br></br>
                     `
+
+                    document.getElementById("reload").addEventListener("click", function (event) {
+                        event.preventDefault();
+                        location.reload();
+                    });
+
+                    document.getElementById("exit").addEventListener("click", function (event) {
+                        event.preventDefault();
+                        location.href="../index.html";
+                    });
+
+
 
             } else {
                 deleteRadio()
@@ -123,3 +147,45 @@ function deleteRadio() {
         element.checked = false
     })
 }
+
+
+
+
+
+
+
+
+//Traemos el resultado parseado y lo pintamos en el DOM de results.html
+let localSdata = JSON.parse(localStorage.getItem("user"));
+/*
+document.getElementById("resultados").innerHTML = `Has acertado: <span id="span">${datostraidos[0].Puntuacion}</span>`;
+*/
+
+//------------Actualizar datos firebase----------------------//
+
+const firebaseConfig = {
+    apiKey: "AIzaSyCzZ7cOiBFSKZ21yBwNg3mps1764mSJOpo",
+    authDomain: "quiz2-f87e2.firebaseapp.com",
+    projectId: "quiz2-f87e2",
+    storageBucket: "quiz2-f87e2.appspot.com",
+    messagingSenderId: "346823333135",
+    appId: "1:346823333135:web:0db11aaaca9f09df5e5a7a"
+};
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+const db = firebase.firestore();// db representa mi BBDD
+
+
+const createUser = (user) => {
+db.collection("score")
+  .add(user)
+  .then((docRef) => console.log("Document written with ID: ", docRef.id))
+  .catch((error) => console.error("Error adding document: ", error));
+};
+
+
+const ref = db.collection('score').doc();
+ref.set({"email": localSdata[0].email,
+  "fechascore": localSdata[0].fechascore,
+  "puntuacion": localSdata[0].puntuacion
+});
